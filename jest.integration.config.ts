@@ -4,7 +4,7 @@ const config: Config.InitialOptions = {
     verbose: true,
     collectCoverage: true,
     preset: 'ts-jest',
-    testRegex: "(/__tests__/.*\\.test)\\.(jsx?|tsx?|ts|js)$",
+    testRegex: "(/__tests__/.*\\.e2e.test)\\.(jsx?|tsx?|ts|js)$",
     transform: {
         '^.+\\.ts?$': 'ts-jest',
     },

@@ -7,6 +7,6 @@ export default class ServiceCheckController {
     }
 
     static isMaintenance(req: Request, res: Response, next?: NextFunction) {
-        res.status(HTTP_STATUS_CODE.OK).json({ 'msg': 'test' })
+        res.status(HTTP_STATUS_CODE.OK).json({ 'msg': 'it is not maintenancee' })
     }
 }

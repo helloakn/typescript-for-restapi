@@ -26,7 +26,6 @@ export class Server {
             routes.forEach((r: T) => {
                 if (r.url !== '' && r.url !== undefined) {
                     const url = prefix + r.url as string;
-                    console.log('url=>', url)
                     extendRouters.get(url, r.fun as RequestHandler);
                 }
                 if (r.routes.length > 0) {
@@ -38,7 +37,6 @@ export class Server {
         }
 
         for (const [_, r] of Object.entries(routes)) {
-            console.log('-----', _)
             if (r.url !== '' && r.url !== undefined) {
                 console.log('r.url=>', r.url)
                 extendRouters.get(r.url as string, r.fun as RequestHandler);
@@ -52,15 +50,17 @@ export class Server {
         return extendRouters;
     }
 
-    init() {
+    configureSetting() {
         this.httpSvr.use(bodyparser.json());
-        this.httpSvr.use(bodyparser.urlencoded({     // to support URL-encoded bodies
-            extended: true
-        }));
+        this.httpSvr.use(bodyparser.urlencoded({ extended: true })); // to support URL-encoded bodies
         this.httpSvr.use(cors());
         this.httpSvr.use(express.json({ limit: '1000MB' }));
         this.httpSvr.use('/', this.configureRoutes());
         this.httpSvr.use(errorHandler);
+    }
+
+    init() {
+        this.configureSetting();
 
         http.createServer(this.httpSvr).listen(this.PORT, () => {
             console.log(`Server is running on PORT : ${this.PORT}`);
