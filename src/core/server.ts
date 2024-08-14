@@ -37,6 +37,7 @@ export class Server {
         }
 
         for (const [_, r] of Object.entries(routes)) {
+            console.log('-----', _)
             if (r.url !== '' && r.url !== undefined) {
                 console.log('r.url=>', r.url)
                 extendRouters.get(r.url as string, r.fun as RequestHandler);
