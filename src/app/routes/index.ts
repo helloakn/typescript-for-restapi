@@ -1,0 +1,1 @@
+export { default as userRouters } from '@/app/routes/api/user.route'
