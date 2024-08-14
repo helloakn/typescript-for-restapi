@@ -18,10 +18,10 @@ export const HTTP_STATUS_CODE = {
 
 export const ERRORS = {
     UNKNOWN_ERROR: {
-        code: 500,
+        code: HTTP_STATUS_CODE.SERVER_ERROR,
         msg: 'Unknown Error'
     },
-    Forbidden: {
+    FORBIDDEN_ERROR: {
         code: 403,
         msg: 'Forbidden: You may need autohrization!'
     },
