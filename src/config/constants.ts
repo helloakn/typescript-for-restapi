@@ -15,3 +15,14 @@ export const HTTP_STATUS_CODE = {
     METHOD_NOT_ALLOW: 405,
     UNSUPPORTED_MEDIA_TYPE: 415,
 } as const;
+
+export const ERRORS = {
+    UNKNOWN_ERROR: {
+        code: 500,
+        msg: 'Unknown Error'
+    },
+    Forbidden: {
+        code: 403,
+        msg: 'Forbidden: You may need autohrization!'
+    },
+}

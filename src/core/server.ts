@@ -8,6 +8,7 @@ dotenv.config();
 import { HTTP_CONFIG } from '@/config';
 
 import * as routes from '@/app/routes';
+import { errorHandler } from '@/app/middlewares';
 
 console.log('-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --');
 export class Server {
@@ -59,6 +60,7 @@ export class Server {
         this.httpSvr.use(cors());
         this.httpSvr.use(express.json({ limit: '1000MB' }));
         this.httpSvr.use('/', this.configureRoutes());
+        this.httpSvr.use(errorHandler);
 
         http.createServer(this.httpSvr).listen(this.PORT, () => {
             console.log(`Server is running on PORT : ${this.PORT}`);
