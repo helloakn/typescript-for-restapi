@@ -24,7 +24,7 @@
 │   │   ├── middlewares               
 │   │   ├── models                    # for database table
 │   │   └── routes                    # for admin / user / swigger api routes etc
-│   ├── config                          # for main functions and components
+│   ├── config                        # for main functions and components
 │   │   └─ ...
 │   ├── core                          # for main functions and components
 │   │   └─ ...

@@ -20,7 +20,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/helloakn/url-shortener-service"
+        "url": "git+https://github.com/helloakn/typescript-for-restapi"
     },
     "dependencies": {
         "cors": "^2.8.5",
