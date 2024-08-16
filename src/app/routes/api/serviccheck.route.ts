@@ -1,6 +1,3 @@
-
-import type { Request, Response, NextFunction } from 'express';
-
 import ServiceCheckController from '@/app/controllers/serviceCheck.controller';
 
 import Routers from '@/core/route'
@@ -10,4 +7,5 @@ const routers = new Routers();
 
 export default routers
     .addRoute([GET], '/health-check', ServiceCheckController.healthCheck)
-    .addRoute([GET, POST], '/is-maintenance', ServiceCheckController.isMaintenance);
+    .addRoute([GET, POST], '/is-maintenance', ServiceCheckController.isMaintenance)
+    .addRoute([GET, POST], '/demo', ServiceCheckController.validateDemo);
