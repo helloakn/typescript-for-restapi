@@ -13,7 +13,7 @@ export default class ServiceCheckController {
         res.status(HTTP_STATUS_CODE.OK).json({ 'msg': 'it is not maintenancee' })
     }
 
-    @Validate(DemoValidator)
+    @Validate<DemoValidator>(DemoValidator)
     static validateDemo(req: Request, res: Response, next?: NextFunction) {
         res.status(HTTP_STATUS_CODE.OK).json({ 'msg': 'demo' })
     }
