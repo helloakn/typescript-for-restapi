@@ -34,6 +34,11 @@ class Validator {
         callBack(this);
         return this;
     }
+
+
+    validate(input: any) {
+        console.log('validate function should be implemented in Child Class')
+    }
 };
 
 export default Validator;

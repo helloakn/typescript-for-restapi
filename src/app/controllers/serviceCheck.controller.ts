@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
 import { HTTP_STATUS_CODE } from '@/config';
 
-import { DemoValidator } from './serviceCheck.validator';
+import { DemoValidator } from '@/app/validators/serviceCheck/DemoValidator';
 import { Validate } from '@/core/decorators';
 
 export default class ServiceCheckController {

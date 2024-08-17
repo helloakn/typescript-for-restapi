@@ -4,8 +4,9 @@ import { TDic } from '@/core/types';
 
 export class DemoValidator extends Validator {
     isValidID(query: TDic) {
-        if (!query.id) throw { code: 500, msg: 'ID is Required' }
         this.isValidate = false;
+        if (!query.id) throw { code: 500, msg: 'ID is Required' }
+        this.isValidate = true;
         return this;
     }
 
