@@ -24,10 +24,10 @@ class Validator {
 
         for (const [key, value] of Object.entries(functions)) {
             this[key] = function (this: IValidator, k: any) {
-                return this;
+                // return this;
             }
         }
-        return this;
+        // return this;
     }
 
     Rule(callBack: ICallBack) {

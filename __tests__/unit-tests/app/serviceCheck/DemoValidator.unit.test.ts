@@ -1,5 +1,5 @@
 import { DemoValidator } from '@/app/validators/serviceCheck/DemoValidator';
-
+import { HTTP_STATUS_CODE } from '@/config'
 describe('src - validators - serviceCheck - DemoValidator', () => {
     test('TEST validate function, SHOULD throw exception WHEN id is required', async () => {
         // GIVEN
@@ -18,7 +18,7 @@ describe('src - validators - serviceCheck - DemoValidator', () => {
         })
 
         // THEN
-        expect(process).rejects.toEqual({ code: 500, msg: 'ID is Required' });
+        expect(process).rejects.toEqual({ code: HTTP_STATUS_CODE.BAD_REQUEST, msg: 'ID is Required' });
         expect(demoValidator.isValidate).toBe(false);
     });
     test('TEST validate function, isValidate SHOULD true WHEN id is required', async () => {
