@@ -8,7 +8,7 @@
 ## Table of content
 - [1] File Structure
 - [2] Git Conventional Commits Message
-- [3] Routing
+- [3] Routing Eample
 
 ----
 
@@ -50,11 +50,13 @@
 ---
 
 
-### [3] Route
- *  without controller
- *  with controller
- *  route prefix
- *  route Authorization {with guard}
+### [3] Routing Eample
+ *  Route : without controller
+ *  Route : with controller
+ *  Route : prefix
+ *  Route : Authorization {with guard}
+ *  Route : Multiple request method
+
 #### Route Example
  *  Route : without controller
 ```javascript
@@ -112,7 +114,7 @@ export default routers
 
 ```
 
- *   Route : with authorization
+ *   Route : Authorization {with guard}
 ```javascript
 /* 
 route authorization
