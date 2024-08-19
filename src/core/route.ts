@@ -46,7 +46,7 @@ api/v1
 type Keys = keyof typeof REQUEST_METHODS;
 type TRequestMethod = typeof REQUEST_METHODS[Keys];
 
-export interface TFun { (req: Request, res: Response, next?: NextFunction): void }
+export interface TFuns { (req: Request, res: Response, next: NextFunction): void };
 
 interface IAddPrefixCallBack {
     (routers: IRouter): IRouter
@@ -56,29 +56,26 @@ export interface IRouter {
     prefix?: string
     routes: IRouter[]
     url?: string
-    fun?: TFun
-    middlewares?: TFun[]
+    funs?: TFuns | TFuns[]
+    middlewares?: TFuns[]
     methods?: TRequestMethod[]
 
-    addRoute(methods: TRequestMethod[], url: string, fun: TFun, middlewares?: TFun[]): IRouter
-    addPrefix(prefixUrl: string, callBack: IAddPrefixCallBack, middlewares?: TFun[]): IRouter
+    addRoute(methods: TRequestMethod[], url: string, funs: TFuns | TFuns[]): IRouter
+    addPrefix(prefixUrl: string, callBack: IAddPrefixCallBack, middlewares?: TFuns[]): IRouter
 }
 interface Router extends IRouter { };
 class Router {
     routes: IRouter[] = [];
     constructor() { }
-    addRoute(methods: TRequestMethod[], url: string, fun: TFun, middlewares?: TFun[]): IRouter {
+    addRoute(methods: TRequestMethod[], url: string, funs: TFuns | TFuns[]): IRouter {
         const newRoute: IRouter = new Router();
         newRoute.url = url;
         newRoute.methods = methods;
-        newRoute.fun = fun;
-        if (middlewares !== undefined) {
-            newRoute.middlewares = middlewares;
-        }
+        newRoute.funs = funs;
         this.routes.push(newRoute);
         return this;
     }
-    addPrefix(prefixUrl: string, callBack: IAddPrefixCallBack, middlewares?: TFun[]): IRouter {
+    addPrefix(prefixUrl: string, callBack: IAddPrefixCallBack, middlewares?: TFuns[]): IRouter {
         const root: IRouter = new Router();
         root.prefix = prefixUrl;
         if (middlewares !== undefined) {

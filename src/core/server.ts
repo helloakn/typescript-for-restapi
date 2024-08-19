@@ -26,7 +26,7 @@ export class Server {
             routes.forEach((r: T) => {
                 if (r.url !== '' && r.url !== undefined) {
                     const url = prefix + r.url as string;
-                    extendRouters.get(url, r.fun as RequestHandler);
+                    extendRouters.get(url, r.funs as RequestHandler[]);
                 }
                 if (r.routes.length > 0) {
                     const prefixUrl = prefix + r.prefix
@@ -39,7 +39,18 @@ export class Server {
         for (const [_, r] of Object.entries(routes)) {
             if (r.url !== '' && r.url !== undefined) {
                 console.log('r.url=>', r.url)
-                extendRouters.get(r.url as string, r.fun as RequestHandler);
+                let requestHandlers: RequestHandler | RequestHandler[];
+                if (Array.isArray(r.funs)) {
+                    requestHandlers = r.funs as RequestHandler[];
+                    extendRouters.get(r.url as string, ...requestHandlers);
+                }
+                else {
+                    requestHandlers = r.funs as RequestHandler;
+                    extendRouters.get(r.url as string, requestHandlers);
+                }
+                // const requestHandlers: RequestHandler | RequestHandler[] = r.funs as RequestHandler[];
+                // extendRouters.get(r.url as string, r.fun as RequestHandler[]);
+                // extendRouters.get(r.url as string, ...requestHandlers);
             }
             if (r.routes.length > 0) {
                 if (r.prefix === undefined) {
