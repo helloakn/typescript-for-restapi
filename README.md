@@ -8,6 +8,7 @@
 ## Table of content
 - [1] File Structure
 - [2] Git Conventional Commits Message
+- [3] Routing
 
 ----
 
@@ -47,3 +48,111 @@
 </pre>
 
 ---
+
+
+### [3] Route
+ *  without controller
+ *  with controller
+ *  route prefix
+ *  route Authorization {with guard}
+#### Route Example
+ *  Route : without controller
+```javascript
+import type { Request, Response, NextFunction } from 'express';
+import Routers from '@/core/route'
+import { REQUEST_METHODS } from '@/config';
+
+const { GET } = REQUEST_METHODS;
+const routers = new Routers();
+
+const demoFun = (req: Request, res: Response, next?: NextFunction) => {
+    res.status(200).json({ 'msg': 'tes testFunt' })
+}
+routers.addRoute([GET], '/demo', [demoFun])
+
+```
+ *   Route : controller
+```javascript
+ import ServiceCheckController from '@/app/controllers/serviceCheck.controller';
+
+import Routers from '@/core/route'
+import { REQUEST_METHODS } from '@/config';
+const { GET } = REQUEST_METHODS;
+const routers = new Routers();
+
+export default routers
+    .addRoute([GET], '/health-check', ServiceCheckController.healthCheck)
+
+```
+
+ *   Route : Prefix
+```javascript
+/* 
+route prefix
+*/
+
+import type { Request, Response, NextFunction } from 'express';
+
+import Routers from '@/core/route'
+import { REQUEST_METHODS } from '@/config';
+
+const { GET } = REQUEST_METHODS;
+const routers = new Routers();
+
+const testFun = (req: Request, res: Response, next?: NextFunction) => {
+    res.status(200).json({ 'msg': 'tes testFunt' })
+}
+export default routers
+    .addPrefix('/api/v1', (routers) => {
+        routers
+            .addRoute([GET], '/register', [testFun])
+            .addRoute([GET], '/login', [testFun])
+        return routers;
+    });
+
+```
+
+ *   Route : with authorization
+```javascript
+/* 
+route authorization
+*/
+
+import type { Request, Response, NextFunction } from 'express';
+import { isAuthorizeAccess } from '@/app/middlewares';
+
+import Routers from '@/core/route'
+import { REQUEST_METHODS } from '@/config';
+
+const { GET } = REQUEST_METHODS;
+const routers = new Routers();
+
+const testFun = (req: Request, res: Response, next?: NextFunction) => {
+    res.status(200).json({ 'msg': 'tes testFunt' })
+}
+export default routers
+    .addPrefix('/api/v1/user', (routers) => {
+        routers
+            .addRoute([GET], '/profile', [isAuthorizeAccess, testFun])
+        return routers;
+    });
+
+
+```
+*   Route : Multiple request method
+```javascript
+import type { Request, Response, NextFunction } from 'express';
+
+import Routers from '@/core/route'
+import { REQUEST_METHODS } from '@/config';
+
+const { GET,POST,PUT } = REQUEST_METHODS;
+const routers = new Routers();
+
+const testFun = (req: Request, res: Response, next?: NextFunction) => {
+    res.status(200).json({ 'msg': 'tes testFunt' })
+}
+export default routers
+.addRoute([GET,POST,PUT], '/profile', [ testFun])
+```
+- - -
