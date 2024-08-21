@@ -2,9 +2,11 @@ import express, { Router, RequestHandler } from 'express';
 import * as bodyparser from 'body-parser';
 import http from 'http';
 import cors from 'cors';
-import type { IRouter } from '@/core/route';
 import dotenv from 'dotenv';
 dotenv.config();
+
+import type { IRouter } from '@/core/route';
+
 import { HTTP_CONFIG } from '@/config';
 
 import * as routes from '@/app/routes';

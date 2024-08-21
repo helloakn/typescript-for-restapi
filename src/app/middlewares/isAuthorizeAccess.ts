@@ -1,7 +1,7 @@
 import type { Response, Request, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-import { HTTP_CONFIG } from '@/config/http-config';
+import { HTTP_CONFIG } from '@/config';
 import { ERRORS } from '@/config/constants';
 
 const { JWT_KEY } = HTTP_CONFIG;
