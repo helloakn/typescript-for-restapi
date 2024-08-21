@@ -46,14 +46,12 @@ export class Server {
                 let requestHandlers: RequestHandler | RequestHandler[];
                 if (Array.isArray(r.funs)) {
                     requestHandlers = r.funs as RequestHandler[];
-                    // extendRouters.get(r.url as string, ...requestHandlers);
                     r.methods?.forEach(x => {
                         extendRouters[x](r.url as any as string, r.funs as RequestHandler[]);
                     });
                 }
                 else {
                     requestHandlers = r.funs as RequestHandler;
-                    // extendRouters.get(r.url as string, requestHandlers);
                     r.methods?.forEach(x => {
                         extendRouters[x](r.url as any as string, r.funs as RequestHandler[]);
                     });
