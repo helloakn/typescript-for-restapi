@@ -16,10 +16,11 @@
         "@typescript-eslint"
     ],
     "rules": {
-      "no-async-promise-executor": "off",
-      "@typescript-eslint/no-namespace": "off",
-      "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/no-this-alias":[
+        
+        "no-async-promise-executor": "off",
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-this-alias":[
         "error",
         {
           "allowDestructuring": true, // Allow `const { props, state } = this`; false by default

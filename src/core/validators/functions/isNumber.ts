@@ -1,4 +1,4 @@
 
 export const isNumber = (value: any) => {
-    return typeof value === 'number';
+  return typeof value === 'number';
 }

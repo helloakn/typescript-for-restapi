@@ -5,12 +5,12 @@ type Keys = keyof typeof functions;
 type TFunctions = typeof functions[Keys];
 
 interface ICallBack {
-    (rule: IValidator): void
+  (rule: IValidator): void
 };
 
 
 export interface IValidator {
-    [key: string]: TFunctions | any
+  [key: string]: TFunctions | any
 }
 
 interface Validator extends IValidator {
@@ -18,27 +18,27 @@ interface Validator extends IValidator {
 }
 
 class Validator {
-    isValidate: boolean;
-    constructor() {
-        this.isValidate = true;
+  isValidate: boolean;
+  constructor() {
+    this.isValidate = true;
 
-        for (const [key, value] of Object.entries(functions)) {
-            this[key] = function (this: IValidator, k: any) {
-                // return this;
-            }
-        }
+    for (const [key, value] of Object.entries(functions)) {
+      this[key] = function (this: IValidator, k: any) {
         // return this;
+      }
     }
+    // return this;
+  }
 
-    Rule(callBack: ICallBack) {
-        callBack(this);
-        return this;
-    }
+  Rule(callBack: ICallBack) {
+    callBack(this);
+    return this;
+  }
 
 
-    validate(input: any) {
-        console.log('validate function should be implemented in Child Class')
-    }
+  validate(input: any) {
+    console.log('validate function should be implemented in Child Class')
+  }
 };
 
 export default Validator;

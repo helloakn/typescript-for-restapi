@@ -11,9 +11,9 @@ const routers = new Routers();
 import AuthorController from '@/app/controllers/author/author.controller';
 
 export default
-    routers
-        .addPrefix('/api/v1/author', (routers) => {
-            routers
-                .addRoute([POST], '/register', AuthorController.register)
-            return routers;
-        });
+  routers
+    .addPrefix('/api/v1/author', (routers) => {
+      routers
+        .addRoute([POST], '/register', AuthorController.register)
+      return routers;
+    });

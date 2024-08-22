@@ -49,43 +49,43 @@ type TRequestMethod = typeof REQUEST_METHODS[Keys];
 export interface TFuns { (req: Request, res: Response, next: NextFunction): void };
 
 interface IAddPrefixCallBack {
-    (routers: IRouter): IRouter
+  (routers: IRouter): IRouter
 }
 
 export interface IRouter {
-    prefix?: string
-    routes: IRouter[]
-    url?: string
-    funs?: TFuns | TFuns[]
-    middlewares?: TFuns[]
-    methods?: TRequestMethod[]
+  prefix?: string
+  routes: IRouter[]
+  url?: string
+  funs?: TFuns | TFuns[]
+  middlewares?: TFuns[]
+  methods?: TRequestMethod[]
 
-    addRoute(methods: TRequestMethod[], url: string, funs: TFuns | TFuns[]): IRouter
-    addPrefix(prefixUrl: string, callBack: IAddPrefixCallBack, middlewares?: TFuns[]): IRouter
+  addRoute(methods: TRequestMethod[], url: string, funs: TFuns | TFuns[]): IRouter
+  addPrefix(prefixUrl: string, callBack: IAddPrefixCallBack, middlewares?: TFuns[]): IRouter
 }
 interface Router extends IRouter { };
 class Router {
-    routes: IRouter[] = [];
-    constructor() { }
-    addRoute(methods: TRequestMethod[], url: string, funs: TFuns | TFuns[]): IRouter {
-        const newRoute: IRouter = new Router();
-        newRoute.url = url;
-        newRoute.methods = methods;
-        newRoute.funs = funs;
-        this.routes.push(newRoute);
-        return this;
+  routes: IRouter[] = [];
+  constructor() { }
+  addRoute(methods: TRequestMethod[], url: string, funs: TFuns | TFuns[]): IRouter {
+    const newRoute: IRouter = new Router();
+    newRoute.url = url;
+    newRoute.methods = methods;
+    newRoute.funs = funs;
+    this.routes.push(newRoute);
+    return this;
+  }
+  addPrefix(prefixUrl: string, callBack: IAddPrefixCallBack, middlewares?: TFuns[]): IRouter {
+    const root: IRouter = new Router();
+    root.prefix = prefixUrl;
+    if (middlewares !== undefined) {
+      root.middlewares = middlewares;
     }
-    addPrefix(prefixUrl: string, callBack: IAddPrefixCallBack, middlewares?: TFuns[]): IRouter {
-        const root: IRouter = new Router();
-        root.prefix = prefixUrl;
-        if (middlewares !== undefined) {
-            root.middlewares = middlewares;
-        }
-        const children: IRouter = callBack(root);
-        root.routes = children.routes
-        this.routes.push(root)
-        return this;
-    }
+    const children: IRouter = callBack(root);
+    root.routes = children.routes
+    this.routes.push(root)
+    return this;
+  }
 
 }
 
