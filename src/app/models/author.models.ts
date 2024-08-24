@@ -1,11 +1,16 @@
 import { MongodbModel } from '@/core/databases';
 
 export type IAuthorFields = {
-  name: string;
-  isActive?: boolean;
-  message?: string;
+  name: string
+  isActive?: boolean
+  email?: string
+  phone?: string
+  gender?: 'male' | 'female'
+  isActivate: boolean
+  password?: string
+  position?: string
   address?: {
-    township: string,
+    township: string
     street: string
   }
 }

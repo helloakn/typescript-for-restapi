@@ -4,11 +4,18 @@ import { HTTP_STATUS_CODE } from '@/config';
 import { DemoValidator } from '@/app/validators/serviceCheck/DemoValidator';
 import { Validate } from '@/core/decorators';
 
-import AuthorRegister from '@/app/modules/author/register'
+import RegisterAuthor, { RegistrationValidator } from '@/app/modules/author/register'
 
 export default class AuthorController {
+
+  @Validate<RegistrationValidator>(RegistrationValidator)
   static async register(req: Request, res: Response, next?: NextFunction) {
-    const result = await AuthorRegister.execute({ name: 'akn' });
+    const { name, email, phone, gender, password } = req.body;
+    const input = { name, email, phone, gender, password };
+
+    // const result = await AuthorRegister.execute(input as unknown as IAuthorFields);
+    const result = await RegisterAuthor.execute(input);
+
     res.status(HTTP_STATUS_CODE.OK).json(result)
   }
 
@@ -16,7 +23,7 @@ export default class AuthorController {
     res.status(HTTP_STATUS_CODE.OK).json({ 'msg': 'it is not maintenancee' })
   }
 
-  @Validate<DemoValidator>(DemoValidator)
+  // @Validate<DemoValidator>(DemoValidator)
   static validateDemo(req: Request, res: Response, next?: NextFunction) {
     res.status(HTTP_STATUS_CODE.OK).json({ 'msg': 'demo' })
   }

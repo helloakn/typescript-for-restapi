@@ -1,4 +1,6 @@
+
 import express, { Router, RequestHandler } from 'express';
+import 'express-async-errors';
 import * as bodyparser from 'body-parser';
 import http from 'http';
 import cors from 'cors';
@@ -74,6 +76,7 @@ export class Server {
     this.httpSvr.use(bodyparser.urlencoded({ extended: true })); // to support URL-encoded bodies
     this.httpSvr.use(cors());
     this.httpSvr.use(express.json({ limit: '1000MB' }));
+    // this.httpSvr.use(errorHandler);
     this.httpSvr.use('/', this.configureRoutes());
     this.httpSvr.use(errorHandler);
   }

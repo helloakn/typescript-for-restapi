@@ -1,24 +1,24 @@
 import Author, { IAuthorFields } from '@/app/models/author.models';
+// export type { IAuthorFields } from '@/app/models/author.models';
+export { RegistrationValidator } from '@/app/modules/author/register/register.validator';
 
+// type TSchema<T> = { [K in keyof T]: T[K] };
 
-interface IAuthor {
-  name: string
-}
+class RegisterAuthor<T extends Record<string, any>> {
+  async execute(input: T) {
+    const { name, email, phone, gender, password } = input;
 
-class AuthorRegister {
-  async execute(input: IAuthor) {
-    const name = input.name;
-
-    const data: IAuthorFields = {
-      name: name,
+    const data: T = {
       isActive: false,
-    }
-    const author = new Author(data);
-    const result = await author.save(data);
-    console.log('xr', result)
+      isActivate: false,
+      name, email, phone, gender, password
+    } as any as T
+    const author = new Author(data as any as IAuthorFields);
+    const result = await author.save(data as any as IAuthorFields);
+    // console.log('xr', result)
 
     return result;
   }
 }
 
-export default new AuthorRegister();
+export default new RegisterAuthor();

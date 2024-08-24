@@ -6,5 +6,7 @@ export type {
 } from 'express';
 
 export interface TDic {
-  [key: string]: string | number | Date | boolean | null | TDic | TDic[];
+  [key: string]: string | number | Date | boolean | null | undefined | TDic | TDic[];
 }
+
+export type TAny = string | number | Date | boolean | null | undefined | TDic | TDic[];

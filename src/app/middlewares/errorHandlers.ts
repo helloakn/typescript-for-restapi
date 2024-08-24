@@ -9,7 +9,6 @@ interface ICustomError extends Error {
 }
 
 export const errorHandler: ErrorRequestHandler = (err: ICustomError, req: Request, res: Response, next: NextFunction) => {
-  console.log('err', err)
   const responseFun = (error: ICustomError): void => {
     res.status(error.code as number).send({ msg: error.msg });
   }
