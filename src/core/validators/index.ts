@@ -51,6 +51,9 @@ class Validator {
   isValidate(): boolean {
     return this.$isValidate;
   }
+  setValidate(tf: boolean): void {
+    this.$isValidate = tf;
+  }
   message(): TDic {
     return this.$message;
   }

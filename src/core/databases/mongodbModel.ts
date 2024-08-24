@@ -21,6 +21,7 @@ const DB = (async function connectDb() {
     return db;
   }
   catch (error) {
+    console.log(error)
     console.error('Please take a check mongodb connection string');
   }
 })();

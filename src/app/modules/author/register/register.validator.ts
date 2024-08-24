@@ -1,9 +1,5 @@
 import Validator from '@/core/validators';
 
-const input = { email: 'this is email', username: 'this is username' };
-
-type TInput = typeof input;
-
 export class RegistrationValidator extends Validator {
   validate(input: any) {
     const { req: { body: { username, password } } } = input;
@@ -25,8 +21,6 @@ export class RegistrationValidator extends Validator {
         msg: this.message()
       }
     }
-    console.log('this', this.message())
     return this;
   }
-
 }
