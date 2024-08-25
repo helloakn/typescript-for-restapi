@@ -1,22 +1,13 @@
 
 export function isPureString(value: any) {
+  console.error('isPureString', value)
   const format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-  try {
-    return !format.test(value);
-  }
-  catch (e) {
-    return false;
-  }
+  return !format.test(value);
 }
 
 export const isPureStringAllowSpace = (value: any) => {
   const format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-  try {
-    return !format.test(value);
-  }
-  catch (e) {
-    return false;
-  }
+  return !format.test(value);
 }
 
 export function maxLength(value: any, max: number) {
